@@ -1,0 +1,8 @@
+﻿@page
+
+@{
+	int id = int.Parse(Request.Query["id"]);
+	int index = int.Parse(Request.Query["index"]);
+	MyServer.ChangeValueGroup(id, index);
+	Response.Redirect($"/Test/Groups/EditGroups?id={id}");
+}

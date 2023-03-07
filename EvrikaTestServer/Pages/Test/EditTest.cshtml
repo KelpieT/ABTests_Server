@@ -1,0 +1,128 @@
+﻿@page
+@model EvrikaTestServer.Pages.Test.EditTestModel
+@{
+}
+
+
+<h2>Edit Test</h2>
+
+<form method="POST">
+	<input type="hidden" name="id" value="@Model.abTest.id" />
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">ID</label>
+		<div class="col-sm-6">
+			<label class="col-sm-3 col-form-label">@Model.abTest.id</label>
+		</div>
+	</div>
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">Name</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" name="name" value="@Model.abTest.name" />
+		</div>
+	</div>
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">StartDate</label>
+		<div class="col-sm-6">
+			<input type="date" class="form-control" name="startDate" value="@Model.abTest.startDate" />
+		</div>
+	</div>
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">EndDate</label>
+		<div class="col-sm-6">
+			<input type="date" class="form-control" name="endDate" value="@Model.abTest.endDate" />
+		</div>
+	</div>
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">startCondition</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" name="startCondition" value="@Model.abTest.startCondition" />
+		</div>
+	</div>
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">endCondition</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" name="endCondition" value="@Model.abTest.endCondition" />
+		</div>
+	</div>
+	<div>
+		<label>Save changes before edit groups</label>
+	</div>
+	@if (Model.successMesage.Length > 0)
+	{
+		<div class="row mb-3">
+			<div class="col-sm-9">
+				<div class="alert alert-success alert-dismissible fade show" , role="alert">
+					<strong>@Model.successMesage</strong>
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+			</div>
+		</div>
+	}
+	<a class="btn btn-primary btn-sm" href="/Test/Groups/EditGroups?id=@Model.abTest.id">Edit</a>
+	<div class="row mb-3">
+		<div class="offset-sm-3 col-sm-3 d-grid">
+			<button type="submit" class="btn btn-primary">Save</button>
+		</div>
+		<div class="col-sm-3 d-grid">
+			<a class="btn btn-outline-primary" href="/Test/Index">Cancel</a>
+		</div>
+	</div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Value</th>
+				<th>ServerParams</th>
+			</tr>
+		</thead>
+		<tbody>
+			@for (int i = 0; i < Model.abTest.groups.Count; i++)
+			{
+				<tr>
+					<th>
+						<label class="col-sm-3 col-form-label">@Model.abTest.groups[i].value</label>
+					</th>
+					<th>
+						<div>
+							<table class="table">
+								<thead>
+									<tr>
+										<th>Param</th>
+										<th>Value</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th>
+											<label class="col-sm-3 col-form-label">freeMoney</label>
+										</th>
+										<th>
+											<label class="col-sm-3 col-form-label">@Model.abTest.groups[i].serverParams.freeMoney</label>
+										</th>
+									</tr>
+									<tr>
+										<th>
+											<label class="col-sm-3 col-form-label">expMyltyplier</label>
+										</th>
+										<th>
+
+											<label class="col-sm-3 col-form-label">@Model.abTest.groups[i].serverParams.expMyltyplier</label>
+										</th>
+									</tr>
+									<tr>
+										<th>
+											<label class="col-sm-3 col-form-label">enableADS</label>
+										</th>
+										<th>
+											<label class="col-sm-3 col-form-label">@Model.abTest.groups[i].serverParams.enableADS</label>
+										</th>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</th>
+				</tr>
+			}
+		</tbody>
+	</table>
+
+</form>

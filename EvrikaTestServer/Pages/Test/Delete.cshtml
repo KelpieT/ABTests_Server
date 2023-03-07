@@ -1,0 +1,7 @@
+﻿@page
+
+@{
+	int id = int.Parse(Request.Query["Id"]);
+	MyServer.DeleteTest(id);
+	Response.Redirect("/Test/Index");
+}

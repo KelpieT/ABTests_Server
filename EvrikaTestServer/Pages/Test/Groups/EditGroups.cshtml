@@ -1,0 +1,51 @@
+﻿@page
+@model EvrikaTestServer.Pages.Test.Groups.EditGroupsModel
+@{
+}
+
+<form method="post">
+	<input type="hidden" name="id" value="@Model.abTest.id" />
+
+	<a class="btn btn-primary btn-sm" href="/Test/EditTest?id=@Model.abTest.id">BackToEditTest</a>
+	<a class="btn btn-primary btn-sm" href="/Test/Groups/Add?id=@Model.abTest.id">AddGroup</a>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Value</th>
+				<th>ServerParams</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			@for (int i = 0; i < Model.abTest.groups.Count; i++)
+			{
+				<tr>
+					<th>
+						<input type="text" inputmode="numeric" pattern="[0-9]+([\.,][0-9]+)?" step="0.01" id="@i" class="form-control" name="value_@i" value="@Model.abTest.groups[i].value" />
+					</th>
+					<th>
+						<div>
+							<label class="col-sm-3 col-form-label">freeMoney</label>
+							<div class="col-sm-6">
+								<input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control" name="freeMoney_@i" value="@Model.abTest.groups[i].serverParams.freeMoney" />
+							</div>
+							<label class="col-sm-3 col-form-label">expMyltyplier</label>
+							<div class="col-sm-6">
+								<input type="text" inputmode="numeric" pattern="[0-9]+([\.,][0-9]+)?" step="0.01" class="form-control" name="expMyltyplier_@i" value="@Model.abTest.groups[i].serverParams.expMyltyplier" />
+							</div>
+							<label class="col-sm-3 col-form-label">enableADS</label>
+							<div class="col-sm-6">
+								<input type="checkbox" name="enableADS_@i" value="@Model.abTest.groups[i].serverParams.enableADS" checked="@Model.abTest.groups[i].serverParams.enableADS" />
+							</div>
+						</div>
+					</th>
+					<th>
+						<a class="btn btn-danger btn-sm" href="/Test/Groups/Delete?id=@Model.abTest.id&index=@i">Delete</a>
+					</th>
+				</tr>
+			}
+		</tbody>
+	</table>
+	<button type="submit" class="btn btn-primary">Save</button>
+</form>
+

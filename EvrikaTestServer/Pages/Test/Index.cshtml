@@ -1,0 +1,37 @@
+﻿@page
+@model EvrikaTestServer.Pages.Test.IndexModel
+@{
+}
+<br>
+<h2>List AB Tests</h2>
+<a class="btn btn-primary btn-sm" href="/Test/NewTest">AddNewTest</a>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>StartDate</th>
+			<th>EndDate</th>
+			<th>StartCondition</th>
+			<th>EndCondition</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model.abTests)
+		{
+			<tr>
+				<th>@item.id</th>
+				<th>@item.name</th>
+				<th>@item.startDate.ToShortDateString()</th>
+				<th>@item.endDate.ToShortDateString()</th>
+				<th>@item.startCondition</th>
+				<th>@item.endCondition</th>
+				<th>
+					<a class="btn btn-primary btn-sm" href="/Test/EditTest?id=@item.id">Edit</a>
+					<a class="btn btn-danger btn-sm" href="/Test/Delete?id=@item.id">Delete</a>
+				</th>
+			</tr>
+		}
+	</tbody>
+</table>

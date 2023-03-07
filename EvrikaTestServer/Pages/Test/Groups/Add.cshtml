@@ -1,0 +1,7 @@
+﻿@page
+
+@{
+	int id = int.Parse(Request.Query["id"]);
+	MyServer.AddGroup(id);
+	Response.Redirect($"/Test/Groups/EditGroups?id={id}");
+}

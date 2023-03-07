@@ -1,0 +1,55 @@
+﻿@page
+@model EvrikaTestServer.Pages.Users.UsersModel
+@{
+}
+
+
+<h2>List Users</h2>
+<a class="btn btn-danger btn-sm" href="/Users/Delete">DeleteAll</a>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Tests</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model.Users)
+		{
+			<tr>
+				<th>@item.id</th>
+				<th>
+					@if (item != null && item.userTests != null && item.userTests.abTests != null)
+					{
+						<table class="table">
+							<thead>
+								<tr>
+									<th>IdTest</th>
+									<th>Group</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach (var test in item.userTests.abTests)
+								{
+									<tr>
+										<th>@test.id</th>
+										<th>@test.group</th>
+									</tr>
+								}
+							</tbody>
+						</table>
+					}
+					else
+					{
+						<label>---</label>
+					}
+				</th>
+				<th>
+
+					<a class="btn btn-danger btn-sm" href="/Users/Delete?id=@item.id">Delete</a>
+				</th>
+			</tr>
+		}
+	</tbody>
+</table>
